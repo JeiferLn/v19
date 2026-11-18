@@ -1,56 +1,42 @@
-# Welcome to your Expo app 👋
+# @v19/mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App móvil de V19: React Native + [Expo](https://expo.dev) (SDK 58) con
+[Expo Router](https://docs.expo.dev/router/introduction) (rutas basadas en archivos).
 
-## Get started
+## Puesta en marcha
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Desde la raíz del monorepo (no uses `npm install` aquí: el workspace lo gestiona pnpm):
 
 ```bash
-npm run reset-project
+pnpm install
+cp apps/mobile/.env.example apps/mobile/.env.local   # solo variables EXPO_PUBLIC_*
+pnpm --filter @v19/mobile dev                         # Metro en :8081
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+Variantes: `pnpm --filter @v19/mobile android`, `... ios`, `... web`.
 
-### Other setup steps
+## Estructura
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```
+app/          Rutas de Expo Router: cada archivo es una pantalla; _layout.tsx define navegadores
+src/          Código que no es ruta: components/, hooks/, services/, constants/, modules/
+assets/       Imágenes, iconos y fuentes
+```
 
-## Learn more
+Las rutas viven en `app/` (en la raíz de `apps/mobile`, **no** en `src/app/`). Todo lo que no sea una
+pantalla va en `src/` y se importa con el alias `@/`.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Comandos
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+| Comando                                               | Qué hace                             |
+| ----------------------------------------------------- | ------------------------------------ |
+| `pnpm --filter @v19/mobile lint`                      | ESLint (`expo lint`)                 |
+| `pnpm --filter @v19/mobile typecheck`                 | `tsc --noEmit`                       |
+| `pnpm --filter @v19/mobile exec expo install <pkg>`   | Añadir dependencia nativa compatible |
+| `pnpm --filter @v19/mobile exec expo install --check` | Verificar versiones contra el SDK    |
 
-## Join the community
+## Variables de entorno
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Solo variables `EXPO_PUBLIC_*` (se incrustan en el bundle y son públicas). Ningún secreto
+(`SUPABASE_SERVICE_ROLE_KEY`, Shopify, OpenAI) puede ir aquí: esos viven en `apps/api/.env`.
+Ver `docs/architecture/principles.md`.

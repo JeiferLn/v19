@@ -16,6 +16,7 @@ dependencies = [
 dev = [
     "pytest>=8.3",
     "ruff>=0.8",
+    "mypy>=1.13",
 ]
 
 [tool.uv]
@@ -31,3 +32,14 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["app", "tests"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true

@@ -6,16 +6,16 @@ acepta un ADR en [`docs/decisions/`](../decisions/) que la modifique; nunca se r
 
 Decisión de origen: [ADR 0002](../decisions/0002-architecture-principles.md).
 
-| #   | Regla                                                                  |
-| --- | ---------------------------------------------------------------------- |
-| R1  | Next.js y Expo son aplicaciones independientes                         |
-| R2  | FastAPI es el backend complementario, no un reemplazo de Supabase      |
-| R3  | Shopify es la fuente de verdad del comercio                            |
-| R4  | Supabase es la fuente de verdad de los datos propios de V19            |
-| R5  | Los tipos y validaciones compartidas viven en `packages/`              |
-| R6  | Las credenciales privadas nunca se exponen al cliente                  |
-| R7  | Las operaciones sensibles pasan por servicios backend                  |
-| R8  | No duplicar lógica entre web y mobile                                  |
+| #   | Regla                                                             |
+| --- | ----------------------------------------------------------------- |
+| R1  | Next.js y Expo son aplicaciones independientes                    |
+| R2  | FastAPI es el backend complementario, no un reemplazo de Supabase |
+| R3  | Shopify es la fuente de verdad del comercio                       |
+| R4  | Supabase es la fuente de verdad de los datos propios de V19       |
+| R5  | Los tipos y validaciones compartidas viven en `packages/`         |
+| R6  | Las credenciales privadas nunca se exponen al cliente             |
+| R7  | Las operaciones sensibles pasan por servicios backend             |
+| R8  | No duplicar lógica entre web y mobile                             |
 
 ---
 
@@ -72,14 +72,14 @@ de la app, resultados de IA que se persistan, etc.) vive en Supabase Postgres.
 
 ## R5 — Los tipos y validaciones compartidas viven en `packages/`
 
-| Qué                                   | Dónde                    |
-| ------------------------------------- | ------------------------ |
-| Tipos de dominio y contratos de la API | `@v19/types`             |
-| Esquemas zod (entrada/salida)          | `@v19/validators`        |
-| Cliente HTTP tipado de `apps/api`      | `@v19/api-client`        |
-| Cliente y tipos de BD de Supabase      | `@v19/supabase`          |
-| Textos y traducciones                  | `@v19/i18n`              |
-| tsconfig / prettier                    | `@v19/config`            |
+| Qué                                    | Dónde             |
+| -------------------------------------- | ----------------- |
+| Tipos de dominio y contratos de la API | `@v19/types`      |
+| Esquemas zod (entrada/salida)          | `@v19/validators` |
+| Cliente HTTP tipado de `apps/api`      | `@v19/api-client` |
+| Cliente y tipos de BD de Supabase      | `@v19/supabase`   |
+| Textos y traducciones                  | `@v19/i18n`       |
+| tsconfig / prettier                    | `@v19/config`     |
 
 - ✅ Si un tipo o esquema lo usa más de una app, va a `packages/`.
 - ✅ Las respuestas de la API se validan con zod en `@v19/api-client`.
@@ -93,12 +93,12 @@ de la app, resultados de IA que se persistan, etc.) vive en Supabase Postgres.
 Solo puede llegar al navegador o al binario móvil lo que es público por diseño:
 URL de Supabase, `anon key` y URL de la API.
 
-| Variable                                       | Dónde puede usarse        |
-| ---------------------------------------------- | ------------------------- |
-| `NEXT_PUBLIC_*`, `EXPO_PUBLIC_*`               | Cliente (son públicas)    |
-| `SUPABASE_SERVICE_ROLE_KEY`                    | Solo `apps/api`           |
-| `SHOPIFY_ACCESS_TOKEN`, `SHOPIFY_STORE_DOMAIN` | Solo `apps/api`           |
-| `OPENAI_API_KEY`                               | Solo `apps/api`           |
+| Variable                                       | Dónde puede usarse     |
+| ---------------------------------------------- | ---------------------- |
+| `NEXT_PUBLIC_*`, `EXPO_PUBLIC_*`               | Cliente (son públicas) |
+| `SUPABASE_SERVICE_ROLE_KEY`                    | Solo `apps/api`        |
+| `SHOPIFY_ACCESS_TOKEN`, `SHOPIFY_STORE_DOMAIN` | Solo `apps/api`        |
+| `OPENAI_API_KEY`                               | Solo `apps/api`        |
 
 - ❌ Poner un secreto en una variable `NEXT_PUBLIC_*` / `EXPO_PUBLIC_*`, en `app.json`, en código
   fuente o en un paquete `@v19/*` (todos se empaquetan en clientes).

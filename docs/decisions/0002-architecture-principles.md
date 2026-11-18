@@ -4,11 +4,13 @@
 - **Fecha:** 2026-11-18
 
 ## Contexto
+
 V19 combina dos clientes (Next.js y Expo), un backend propio (FastAPI), Supabase y Shopify. Sin
 límites explícitos es fácil duplicar datos de comercio, mover secretos al cliente, solapar FastAPI
 con Supabase o copiar lógica entre web y mobile.
 
 ## Decisión
+
 Se adoptan como obligatorias las reglas de [`docs/architecture/principles.md`](../architecture/principles.md):
 
 1. Next.js y Expo son aplicaciones independientes.
@@ -21,6 +23,7 @@ Se adoptan como obligatorias las reglas de [`docs/architecture/principles.md`](.
 8. No duplicar lógica entre web y mobile.
 
 ## Consecuencias
+
 - Toda lectura de comercio pasa por `apps/api`, lo que añade un salto de red; se compensará con
   caché derivada si hace falta (nunca editable).
 - La API debe validar el JWT de Supabase antes de exponer operaciones sensibles (pendiente).

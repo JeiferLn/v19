@@ -166,6 +166,9 @@ importers:
 
   .:
     devDependencies:
+      '@v19/config':
+        specifier: workspace:*
+        version: link:packages/config
       prettier:
         specifier: ^3.10.1
         version: 3.10.1
@@ -274,6 +277,9 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../../packages/config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       eslint-config-expo:
         specifier: ~58.0.4
         version: 58.0.4(eslint@9.39.5(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
@@ -348,11 +354,24 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
 
-  packages/config: {}
+  packages/config:
+    dependencies:
+      '@eslint/js':
+        specifier: ^9.39.5
+        version: 9.39.5
+      eslint:
+        specifier: ^9
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
+      typescript-eslint:
+        specifier: ^8.73.0
+        version: 8.73.0(eslint@9.39.5(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
 
   packages/i18n:
     dependencies:
@@ -363,6 +382,9 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -376,6 +398,9 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -385,6 +410,9 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -401,6 +429,9 @@ importers:
       '@v19/config':
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@8.1.1)
       typescript:
         specifier: ~6.0.3
         version: 6.0.3

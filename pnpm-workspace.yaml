@@ -2,7 +2,11 @@ packages:
   - "apps/*"
   - "packages/*"
 
-# Dependencias con scripts de instalación permitidos (pnpm >= 10)
+# Scripts de instalación de dependencias (pnpm >= 10 los bloquea por defecto).
+# Lista explícita: solo se habilita lo que de verdad lo necesita. Revisar con `pnpm ignored-builds`.
+# - sharp 0.35 y unrs-resolver 1.13 no tienen script install/postinstall: usan binarios precompilados
+#   (@img/sharp-*, @unrs/resolver-binding-*) y cargan correctamente sin ejecutar nada → se quedan en false.
+# Nota: la configuración de pnpm (nodeLinker, etc.) va en este archivo; .npmrc solo se usa para auth.
 allowBuilds:
   sharp: false
   unrs-resolver: false

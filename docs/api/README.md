@@ -8,7 +8,7 @@ Con la API en marcha (`pnpm --filter @v19/api dev`), la documentación interacti
 
 ## Endpoints
 
-| Método | Ruta               | Descripción                                   |
-| ------ | ------------------ | --------------------------------------------- |
-| GET    | `/health`          | Estado del servicio                           |
+| Método | Ruta               | Descripción                                       |
+| ------ | ------------------ | ------------------------------------------------- |
+| GET    | `/health`          | Estado del servicio                               |
 | GET    | `/api/v1/products` | Productos (Shopify o datos demo sin credenciales) |

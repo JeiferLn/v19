@@ -1,0 +1,30 @@
+# Generados / dependencias
+node_modules/
+.pnpm-store/
+.turbo/
+.next/
+.expo/
+out/
+dist/
+build/
+coverage/
+ios/
+android/
+.venv/
+.codegraph/
+
+# Lockfiles
+pnpm-lock.yaml
+apps/api/uv.lock
+
+# Archivos generados por herramientas
+next-env.d.ts
+expo-env.d.ts
+packages/supabase/src/database.types.ts
+*.tsbuildinfo
+
+# Bundles de iconos de Xcode (formato de Apple)
+apps/mobile/assets/expo.icon/
+
+# Configuración local de herramientas
+.claude/

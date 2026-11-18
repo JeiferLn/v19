@@ -3,8 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "exports": { ".": "./src/index.ts" },
-  "scripts": { "typecheck": "tsc" },
-  "dependencies": { "@v19/types": "workspace:*", "@v19/validators": "workspace:*" },
-  "devDependencies": { "@v19/config": "workspace:*", "typescript": "~6.0.3" }
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@v19/types": "workspace:*",
+    "@v19/validators": "workspace:*"
+  },
+  "devDependencies": {
+    "@v19/config": "workspace:*",
+    "typescript": "~6.0.3",
+    "eslint": "^9.39.5"
+  }
 }

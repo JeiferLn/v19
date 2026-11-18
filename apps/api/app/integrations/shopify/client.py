@@ -38,7 +38,8 @@ class ShopifyClient:
                 headers=self._headers,
             )
             res.raise_for_status()
-            return res.json()["data"]
+            data: dict[str, Any] = res.json()["data"]
+            return data
 
     async def list_products(self, first: int = 20) -> list[Product]:
         data = await self._query(PRODUCTS_QUERY, {"first": first})

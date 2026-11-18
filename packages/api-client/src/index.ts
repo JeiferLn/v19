@@ -19,7 +19,11 @@ export class ApiClientError extends Error {
 }
 
 export function createApiClient({ baseUrl, getToken, fetch: f = fetch }: ApiClientOptions) {
-  async function request<T>(path: string, schema: z.ZodType<T>, init: RequestInit = {}): Promise<T> {
+  async function request<T>(
+    path: string,
+    schema: z.ZodType<T>,
+    init: RequestInit = {},
+  ): Promise<T> {
     const token = getToken ? await getToken() : null;
     const res = await f(`${baseUrl.replace(/\/$/, "")}${path}`, {
       ...init,

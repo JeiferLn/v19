@@ -3,19 +3,13 @@
     "figwright": {
       "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@figwright/mcp@latest"
-      ],
+      "args": ["-y", "@figwright/mcp@latest"],
       "env": {}
     },
     "codegraph": {
       "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@astudioplus/codegraph-mcp"
-      ],
+      "args": ["-y", "@astudioplus/codegraph-mcp"],
       "env": {}
     }
   }

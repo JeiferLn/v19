@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "uv run uvicorn app.main:app --reload --port 8000",
     "start": "uv run uvicorn app.main:app --host 0.0.0.0 --port 8000",
-    "lint": "uv run ruff check .",
+    "lint": "uv run ruff check . && uv run ruff format --check .",
+    "format": "uv run ruff format . && uv run ruff check --fix .",
+    "typecheck": "uv run mypy app tests",
     "test": "uv run pytest"
   }
 }

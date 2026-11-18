@@ -3,8 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "exports": { ".": "./src/index.ts" },
-  "scripts": { "typecheck": "tsc" },
-  "dependencies": { "i18next": "^27.1.5" },
-  "devDependencies": { "@v19/config": "workspace:*", "typescript": "~6.0.3" }
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "i18next": "^27.1.5"
+  },
+  "devDependencies": {
+    "@v19/config": "workspace:*",
+    "typescript": "~6.0.3",
+    "eslint": "^9.39.5"
+  }
 }
