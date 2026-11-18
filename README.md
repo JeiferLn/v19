@@ -51,4 +51,5 @@ pnpm dev                           # web :3000, mobile (Metro) :8081, api :8000
 
 Para dependencias nativas en mobile usa `pnpm --filter @v19/mobile exec expo install <pkg>`.
 
-Más detalle en [`docs/`](docs/architecture/overview.md).
+Más detalle en [`docs/`](docs/architecture/overview.md). Reglas de arquitectura obligatorias:
+[`docs/architecture/principles.md`](docs/architecture/principles.md).
