@@ -8,7 +8,9 @@
   },
   "scripts": {
     "typecheck": "tsc",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run",
+    "gen:schemas": "node scripts/gen-schemas.ts && prettier --write schemas"
   },
   "dependencies": {
     "@v19/types": "workspace:*",
@@ -17,6 +19,8 @@
   "devDependencies": {
     "@v19/config": "workspace:*",
     "typescript": "~6.0.3",
-    "eslint": "^9.39.5"
+    "eslint": "~9.39.5",
+    "vitest": "~5.1.0",
+    "prettier": "^3.10.1"
   }
 }

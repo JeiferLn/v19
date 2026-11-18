@@ -1,8 +1,10 @@
 import { createApiClient } from "@v19/api-client";
+import { supabaseTokenGetter } from "@v19/supabase";
 
-import { supabase } from "./supabase";
+import { env } from "./env";
+import { getSupabase } from "./supabase";
 
 export const api = createApiClient({
-  baseUrl: process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:8000",
-  getToken: async () => (await supabase.auth.getSession()).data.session?.access_token ?? null,
+  baseUrl: env.apiUrl,
+  getToken: supabaseTokenGetter(getSupabase),
 });

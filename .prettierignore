@@ -20,7 +20,6 @@ apps/api/uv.lock
 # Archivos generados por herramientas
 next-env.d.ts
 expo-env.d.ts
-packages/supabase/src/database.types.ts
 *.tsbuildinfo
 
 # Bundles de iconos de Xcode (formato de Apple)

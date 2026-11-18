@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Lint, typecheck, build y tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Valores de CI (no secretos): solo los usa el build/arranque para validar el formato de env.
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-anon-key
+      EXPO_PUBLIC_API_URL: http://localhost:8000
+      EXPO_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ci-anon-key
+      APP_ENV: test
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - uses: astral-sh/setup-uv@v7
+        with:
+          working-directory: apps/api
+          enable-cache: true
+
+      - name: Instalar dependencias JS
+        run: pnpm install --frozen-lockfile
+
+      - name: Instalar dependencias Python
+        working-directory: apps/api
+        run: uv sync --locked
+
+      - name: Peer dependencies
+        run: pnpm peers check
+
+      - name: Formato
+        run: pnpm format:check
+
+      - name: Contratos zod → JSON Schema sin cambios pendientes
+        run: pnpm check:schemas
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: Tests
+        run: pnpm test
+
+      - name: Bundle de producción de mobile
+        working-directory: apps/mobile
+        run: pnpm exec expo export --platform all --output-dir dist

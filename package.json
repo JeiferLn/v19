@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@12.9.1",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "prettier": "@v19/config/prettier",
   "scripts": {
@@ -13,7 +13,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,cjs,json,md,css}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,cjs,json,md,css}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,cjs,json,md,css}\"",
+    "check:schemas": "pnpm --filter @v19/validators gen:schemas && node scripts/check-clean.mjs packages/validators/schemas"
   },
   "devDependencies": {
     "@v19/config": "workspace:*",

@@ -29,11 +29,15 @@ apps/mobile (Expo) ──┘                                        ├── Sh
 - **Supabase** gestiona autenticación y base de datos; los clientes usan la `anon key` + RLS.
 - **api** (FastAPI) complementa a Supabase: encapsula integraciones con secretos (Shopify, OpenAI),
   webhooks y operaciones sensibles. Es la única pieza con `service_role key` y tokens de terceros.
-  Los clientes envían el JWT de Supabase en `Authorization: Bearer` (validación en la API: pendiente).
+  Los clientes envían el JWT de Supabase en `Authorization: Bearer` (`supabaseTokenGetter` de
+  `@v19/supabase`); la API lo verifica contra las JWKS de Supabase con `get_current_user`
+  (`app/core/security.py`).
 - Los paquetes `@v19/*` se consumen como TypeScript fuente (sin build): Next los transpila con
   `transpilePackages` y Metro los resuelve directamente. Ver
   [ADR 0003](../decisions/0003-paquetes-typescript-fuente.md).
-- Los esquemas Pydantic de la API devuelven JSON en camelCase para coincidir con `@v19/types`.
+- Los esquemas Pydantic de la API devuelven JSON en camelCase para coincidir con `@v19/types`. El
+  contrato se verifica en `apps/api/tests/test_contracts.py` contra el JSON Schema generado desde zod
+  (`packages/validators/schemas/`).
 
 ## Capas de `apps/api`
 
@@ -42,11 +46,19 @@ app/api/routes/     HTTP: entrada/salida, auth, sin lógica de negocio
 app/services/       Lógica de negocio y orquestación
 app/integrations/   Clientes de terceros (shopify/, openai/) — únicos que conocen sus secretos
 app/schemas/        Contratos Pydantic (alineados con @v19/types)
-app/core/config.py  Settings desde variables de entorno
+app/core/config.py  Settings desde variables de entorno (validadas)
+app/core/security.py Verificación del JWT de Supabase (dependencia get_current_user)
 ```
 
 ## Variables de entorno
 
 Cada app lee su propio archivo (no hay `.env` raíz): `apps/web/.env.local` (solo `NEXT_PUBLIC_*`),
 `apps/mobile/.env.local` (solo `EXPO_PUBLIC_*`) y `apps/api/.env` (secretos: service role, OpenAI,
-Shopify). Detalle en el [README](../../README.md#variables-de-entorno).
+Shopify). Web y mobile las validan con `@v19/env`; la API con `pydantic-settings`. Detalle en el
+[README](../../README.md#variables-de-entorno).
+
+## Decisiones relacionadas
+
+- [ADR 0003](../decisions/0003-paquetes-typescript-fuente.md): paquetes como TS fuente, enlazado aislado.
+- [ADR 0004](../decisions/0004-shopify-tokens-y-versionado.md): Shopify (tokens y versión) y CSP.
+- [ADR 0005](../decisions/0005-eslint-9.md): ESLint 9.

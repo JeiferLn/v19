@@ -20,6 +20,10 @@
     },
     "test": {
       "outputs": []
+    },
+    "@v19/api#test": {
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/validators/schemas/**"],
+      "outputs": []
     }
   }
 }

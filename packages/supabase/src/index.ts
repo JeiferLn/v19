@@ -28,3 +28,16 @@ export function createSupabaseClient({
     },
   });
 }
+
+/**
+ * Devuelve una función que obtiene el access token (JWT) de la sesión actual, o null.
+ * Se pasa como `getToken` a `createApiClient` para que la API reciba `Authorization: Bearer`.
+ */
+export function supabaseTokenGetter(
+  getClient: () => V19SupabaseClient,
+): () => Promise<string | null> {
+  return async () => {
+    const { data } = await getClient().auth.getSession();
+    return data.session?.access_token ?? null;
+  };
+}

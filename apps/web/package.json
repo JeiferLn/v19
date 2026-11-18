@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@v19/api-client": "workspace:*",
+    "@v19/env": "workspace:*",
     "@v19/i18n": "workspace:*",
     "@v19/supabase": "workspace:*",
     "@v19/types": "workspace:*",
@@ -21,11 +22,11 @@
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.3",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@v19/config": "workspace:*",
-    "eslint": "^9",
+    "eslint": "~9.39.5",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
     "typescript": "~6.0.3"

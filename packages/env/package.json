@@ -1,0 +1,23 @@
+{
+  "name": "@v19/env",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@v19/validators": "workspace:*"
+  },
+  "devDependencies": {
+    "@v19/config": "workspace:*",
+    "eslint": "~9.39.5",
+    "typescript": "~6.0.3",
+    "vitest": "~5.1.0"
+  }
+}
