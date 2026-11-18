@@ -1,0 +1,9 @@
+{
+  "name": "@v19/types",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "tsc" },
+  "devDependencies": { "@v19/config": "workspace:*", "typescript": "~6.0.3" }
+}

@@ -1,0 +1,14 @@
+{
+  "common": {
+    "appName": "v19",
+    "welcome": "Bienvenido a v19",
+    "loading": "Cargando...",
+    "error": "Algo salió mal"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña"
+  }
+}

@@ -1,0 +1,23 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Dependencias con scripts de instalación permitidos (pnpm >= 10)
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
+
+minimumReleaseAgeExclude:
+  - "@supabase/auth-js@2.119.1"
+  - "@supabase/functions-js@2.119.1"
+  - "@supabase/postgrest-js@2.119.1"
+  - "@supabase/realtime-js@2.119.1"
+  - "@supabase/storage-js@2.119.1"
+  - "@supabase/supabase-js@2.119.1"
+  - "@turbo/darwin-64@2.11.13"
+  - "@turbo/darwin-arm64@2.11.13"
+  - "@turbo/linux-64@2.11.13"
+  - "@turbo/linux-arm64@2.11.13"
+  - "@turbo/windows-64@2.11.13"
+  - "@turbo/windows-arm64@2.11.13"
+  - turbo@2.11.13

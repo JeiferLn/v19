@@ -1,0 +1,12 @@
+{
+  "name": "@v19/config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/nextjs.json": "./tsconfig/nextjs.json",
+    "./tsconfig/react-native.json": "./tsconfig/react-native.json",
+    "./tsconfig/library.json": "./tsconfig/library.json",
+    "./prettier": "./prettier.config.js"
+  }
+}

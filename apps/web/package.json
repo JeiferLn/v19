@@ -1,0 +1,33 @@
+{
+  "name": "@v19/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@v19/api-client": "workspace:*",
+    "@v19/i18n": "workspace:*",
+    "@v19/supabase": "workspace:*",
+    "@v19/types": "workspace:*",
+    "@v19/validators": "workspace:*",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@v19/config": "workspace:*",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "tailwindcss": "4.3.3",
+    "typescript": "~6.0.3"
+  }
+}

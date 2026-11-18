@@ -1,0 +1,10 @@
+{
+  "name": "@v19/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "tsc" },
+  "dependencies": { "i18next": "^27.1.5" },
+  "devDependencies": { "@v19/config": "workspace:*", "typescript": "~6.0.3" }
+}

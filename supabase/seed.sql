@@ -1,0 +1,2 @@
+-- Datos de ejemplo para desarrollo local (se ejecuta con `supabase db reset`).
+-- Los perfiles se crean por trigger al registrar usuarios en auth.users.
